@@ -9,13 +9,13 @@ import androidx.room.RoomDatabase
 abstract class RoomDataBase() : RoomDatabase() {
     abstract fun noteDao(): NoteDao
 
-    companion object{
+    companion object {
         @Volatile
-       private var instance : RoomDataBase?=null
+        private var instance: RoomDataBase? = null
 
 
-        fun getInstance(context: Context): RoomDataBase{
-            return instance?: synchronized(this){
+        fun getInstance(context: Context): RoomDataBase {
+            return instance ?: synchronized(this) {
                 Room.databaseBuilder(
                     context,
                     RoomDataBase::class.java,

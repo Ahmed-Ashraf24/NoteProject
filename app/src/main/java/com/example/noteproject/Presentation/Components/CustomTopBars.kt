@@ -13,7 +13,11 @@ import androidx.compose.ui.unit.dp
 import com.example.noteproject.R
 
 @Composable
-fun NewNoteTopBar(modifier: Modifier = Modifier, onBackClicked: () -> (Unit), onSaveClicked: ()->(Unit)){
+fun NewNoteTopBar(
+    modifier: Modifier = Modifier,
+    onBackClicked: () -> (Unit),
+    onSaveClicked: () -> (Unit)
+) {
     Row(
         modifier,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -30,7 +34,8 @@ fun NewNoteTopBar(modifier: Modifier = Modifier, onBackClicked: () -> (Unit), on
                 shape = RoundedCornerShape(15.dp),
                 shadowEvaluation = 8,
                 iconPadding = 11
-            )        }
+            )
+        }
         Row(
             horizontalArrangement = Arrangement.spacedBy(21.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -63,7 +68,11 @@ fun NewNoteTopBar(modifier: Modifier = Modifier, onBackClicked: () -> (Unit), on
 }
 
 @Composable
-fun EditNoteTopBar(modifier: Modifier = Modifier, onBackClicked:()->(Unit), onEditClicked:()->(Unit)) {
+fun EditNoteTopBar(
+    modifier: Modifier = Modifier,
+    onBackClicked: () -> (Unit),
+    onEditClicked: () -> (Unit)
+) {
     Row(
         modifier,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -80,7 +89,8 @@ fun EditNoteTopBar(modifier: Modifier = Modifier, onBackClicked:()->(Unit), onEd
                 shape = RoundedCornerShape(15.dp),
                 shadowEvaluation = 8,
                 iconPadding = 12
-            )        }
+            )
+        }
         Row(
 
             verticalAlignment = Alignment.CenterVertically

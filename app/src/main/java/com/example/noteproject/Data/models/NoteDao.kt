@@ -11,17 +11,17 @@ import kotlinx.coroutines.flow.Flow
 interface NoteDao {
 
     @Query("SELECT * From Note")
-     fun getAllNotes(): Flow<List<Note>>
+    fun getAllNotes(): Flow<List<Note>>
 
     @Insert
-   suspend fun addNote(note:Note)
+    suspend fun addNote(note: Note)
 
     @Update
-   suspend fun editNote(note: Note)
+    suspend fun editNote(note: Note)
 
     @Delete
-   suspend fun deleteNote(note:Note)
+    suspend fun deleteNote(note: Note)
 
-   @Query("SELECT *From Note where title like :query or content like :query ")
+    @Query("SELECT *From Note where title like :query or content like :query ")
     fun getNotesMatchesQuery(query: String): Flow<List<Note>>
 }

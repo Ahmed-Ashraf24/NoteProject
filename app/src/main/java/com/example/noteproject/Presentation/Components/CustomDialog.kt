@@ -25,10 +25,10 @@ import com.example.noteproject.R
 
 
 @Composable
-fun CustomDialog(modifier: Modifier = Modifier, onDismiss: () -> (Unit), onConfirm:  () -> (Unit)) {
-   
+fun CustomDialog(modifier: Modifier = Modifier, onDismiss: () -> (Unit), onConfirm: () -> (Unit)) {
+
     AlertDialog(
-        modifier=modifier,
+        modifier = modifier,
         containerColor = _root_ide_package_.com.example.noteproject.Presentation.theme.backGroundColor,
         onDismissRequest = onDismiss,
         confirmButton = {
@@ -37,19 +37,24 @@ fun CustomDialog(modifier: Modifier = Modifier, onDismiss: () -> (Unit), onConfi
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.Top,
             ) {
-                Button(onClick = onDismiss,
+                Button(
+                    onClick = onDismiss,
                     modifier = Modifier,
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
-                    ){
+                ) {
                     Text("discard")
                 }
 
-                Button(onClick = onConfirm,
+                Button(
+                    onClick = onConfirm,
                     modifier = Modifier,
                     shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = _root_ide_package_.com.example.noteproject.Presentation.theme.greenButtonColor),
-                ){
+                    colors = ButtonDefaults
+                        .buttonColors(
+                            containerColor = _root_ide_package_.com.example.noteproject.Presentation.theme.greenButtonColor
+                        )
+                ) {
                     Text("confirm")
                 }
 
@@ -84,7 +89,7 @@ fun CustomDialog(modifier: Modifier = Modifier, onDismiss: () -> (Unit), onConfi
 @Composable
 private fun DialogScreenPrev() {
 
-    CustomDialog(Modifier,{},{})
+    CustomDialog(Modifier, {}, {})
 
 
 }

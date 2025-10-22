@@ -16,17 +16,16 @@ class NoteViewModel() : ViewModel() {
     val noteList = _noteList
     private val _searchResultList = MutableStateFlow<List<Note>>(emptyList())
     val searchResultList = _searchResultList
-init {
-    getAllNotes()
-}
 
-   private fun getAllNotes() {
+    init {
+        getAllNotes()
+    }
+
+    private fun getAllNotes() {
         viewModelScope.launch {
-            noteRepo.getAllNotes()
-                .collect { notes ->
-                _noteList.value = notes
-                Log.d("NoteViewModel get all notes", "Collected notes: $notes")
-            }
+            noteRepo.getAllNotes().collect { notes ->
+                    _noteList.value = notes
+                }
         }
     }
 
@@ -36,22 +35,24 @@ init {
 
         }
     }
-    fun getNoteFromSearch(query: SearchQuery){
+
+    fun getNoteFromSearch(query: SearchQuery) {
         viewModelScope.launch {
-            noteRepo.getNoteThatMatchesQuery(query).collect { noteList->
-                _searchResultList.value=noteList
-                Log.d("NoteViewModel from search", "Collected notes: $noteList")
+            noteRepo.getNoteThatMatchesQuery(query).collect { noteList ->
+                _searchResultList.value = noteList
 
             }
         }
     }
+
     fun updateNote(note: Note) {
         viewModelScope.launch {
             noteRepo.updateNote(note)
 
         }
     }
-    fun deleteNote(note:Note){
+
+    fun deleteNote(note: Note) {
         viewModelScope.launch {
             noteRepo.deleteNote(note)
             getAllNotes()

@@ -26,16 +26,16 @@ import com.example.noteproject.R
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun NoteItem(modifier: Modifier = Modifier, title: String, color: Color,
-             onClicked:(Boolean)->(Unit),onLongClick:()->(Unit)
-        ,isDeleteView:Boolean
+fun NoteItem(
+    modifier: Modifier = Modifier, title: String, color: Color,
+    onClicked: (Boolean) -> (Unit), onLongClick: () -> (Unit), isDeleteView: Boolean
 ) {
     Surface(
         modifier = modifier
             .combinedClickable(
-            onClick = { onClicked(isDeleteView) },
-            onLongClick = {onLongClick()}
-        ),
+                onClick = { onClicked(isDeleteView) },
+                onLongClick = { onLongClick() }
+            ),
         shape = RoundedCornerShape(8.dp),
 
         color = if (isDeleteView) Color.Red else color
@@ -60,7 +60,10 @@ fun NoteItem(modifier: Modifier = Modifier, title: String, color: Color,
             else
                 Text(
                     title,
-                    style = _root_ide_package_.com.example.noteproject.Presentation.theme.Typography.titleLarge.copy(fontSize = 25.sp, color = Color.Black)
+                    style = _root_ide_package_.com.example.noteproject.Presentation.theme.Typography.titleLarge.copy(
+                        fontSize = 25.sp,
+                        color = Color.Black
+                    )
                 )
         }
     }
@@ -75,7 +78,6 @@ private fun NoteItemPrev() {
             .padding(top = 35.dp, start = 23.dp, end = 23.dp)
             .fillMaxWidth(),
         title = "UI concepts worth exsisting",
-        color = Color.Cyan, isDeleteView = true
-    , onLongClick = {}, onClicked = {})
+        color = Color.Cyan, isDeleteView = true, onLongClick = {}, onClicked = {})
 
 }

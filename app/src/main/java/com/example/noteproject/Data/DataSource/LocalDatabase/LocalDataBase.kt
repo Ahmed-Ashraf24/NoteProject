@@ -7,9 +7,9 @@ import com.example.noteproject.Data.models.SearchQuery
 import com.example.noteproject.NoteApplication
 import kotlinx.coroutines.flow.Flow
 
-class LocalDataBase: DatabaseClient {
-    private val localDatabase= RoomDataBase.Companion.getInstance(NoteApplication.Companion.getAppContext())
-    override  fun getAllNotes(): Flow<List<Note>> {
+class LocalDataBase : DatabaseClient {
+    private val localDatabase = RoomDataBase.getInstance(NoteApplication.getAppContext())
+    override fun getAllNotes(): Flow<List<Note>> {
         return localDatabase.noteDao().getAllNotes()
     }
 
@@ -26,7 +26,7 @@ class LocalDataBase: DatabaseClient {
         localDatabase.noteDao().deleteNote(note)
     }
 
-    override  fun getNoteThatMatchesQuery(query: SearchQuery): Flow<List<Note>> {
-       return localDatabase.noteDao().getNotesMatchesQuery(query.toString())
+    override fun getNoteThatMatchesQuery(query: SearchQuery): Flow<List<Note>> {
+        return localDatabase.noteDao().getNotesMatchesQuery(query.toString())
     }
 }

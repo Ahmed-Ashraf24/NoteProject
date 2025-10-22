@@ -21,31 +21,39 @@ import androidx.compose.ui.unit.dp
 import com.example.noteproject.R
 
 @Composable
-fun EmptyStateContent(modifier: Modifier, label:String, imagePainter: Painter) {
+fun EmptyStateContent(modifier: Modifier, label: String, imagePainter: Painter) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Box(contentAlignment = Alignment.BottomCenter){
-            Image(modifier=Modifier
-                .width(380.dp)
-                .height(247.dp),
+        Box(contentAlignment = Alignment.BottomCenter) {
+            Image(
+                modifier = Modifier
+                    .width(380.dp)
+                    .height(247.dp),
                 painter = imagePainter,
                 contentDescription = "empty state"
             )
-            Row(Modifier){
-                Text(label, style = _root_ide_package_.com.example.noteproject.Presentation.theme.Typography.bodyMedium, color = Color.White)
+            Row(Modifier) {
+                Text(
+                    label,
+                    style = _root_ide_package_.com.example.noteproject.Presentation.theme.Typography.bodyMedium,
+                    color = Color.White
+                )
             }
         }
     }
 
 
 }
+
 @Preview(showSystemUi = true)
 @Composable
 private fun EmptyStatePrev() {
-    EmptyStateContent(Modifier.fillMaxSize(),"adsadasd", painterResource(
-        R.drawable.ic_empty_state_search
-    ))
+    EmptyStateContent(
+        Modifier.fillMaxSize(), "adsadasd", painterResource(
+            R.drawable.ic_empty_state_search
+        )
+    )
 }

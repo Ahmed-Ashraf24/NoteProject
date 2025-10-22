@@ -43,22 +43,20 @@ import com.example.noteproject.Presentation.theme.Typography
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
- fun HomeScreen(navController: NavController, viewModel: NoteViewModel) {
+fun HomeScreen(navController: NavController, viewModel: NoteViewModel) {
     val noteList by viewModel.noteList.collectAsState()
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         containerColor = backGroundColor,
         topBar = {
             HomeScreenTopBar(onSearchClicked = { navController.navigate("search") })
-                 },
+        },
         bottomBar = {
             BottomBar(
                 onButtonClicked = { navController.navigate("note") }
             )
         }
     ) {
-
-
 
 
         if (noteList.isEmpty()) {
@@ -75,12 +73,11 @@ import com.example.noteproject.Presentation.theme.Typography
                 Modifier
                     .padding(top = 160.dp)
                     .fillMaxSize(),
-                 noteList,
-            ) { note,isDeleteView ->
-                if(isDeleteView){
+                noteList,
+            ) { note, isDeleteView ->
+                if (isDeleteView) {
                     viewModel.deleteNote(note)
-              }
-                else{
+                } else {
                     navController.navigate(
                         "note?title=${Uri.encode(note.title)}&content=${
                             Uri.encode(
@@ -94,7 +91,6 @@ import com.example.noteproject.Presentation.theme.Typography
 
     }
 }
-
 
 
 @Composable

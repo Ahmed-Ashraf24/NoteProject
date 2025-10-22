@@ -29,25 +29,25 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.runBlocking
 
 class MainActivity : ComponentActivity() {
-    val noteViewModel= NoteViewModel()
+    val noteViewModel = NoteViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-            setContent {
+        setContent {
 
             NoteProjectTheme {
 
                 val navController = rememberNavController()
-                viewModel(NoteViewModel::class,this)
+                viewModel(NoteViewModel::class, this)
 
                 NavHost(
                     navController = navController,
                     startDestination = "home"
                 ) {
-                    composable("home") { HomeScreen(navController,noteViewModel) }
+                    composable("home") { HomeScreen(navController, noteViewModel) }
                     composable("search") {
                         SearchScreen(
-                            navController,noteViewModel
+                            navController, noteViewModel
                         )
                     }
                     composable(
@@ -64,9 +64,9 @@ class MainActivity : ComponentActivity() {
                                 nullable = true
                                 defaultValue = null
                             },
-                            navArgument("id"){
-                                type= NavType.IntType
-                                defaultValue=-1
+                            navArgument("id") {
+                                type = NavType.IntType
+                                defaultValue = -1
                             }
                         )
                     ) { backStackEntry ->
@@ -75,10 +75,14 @@ class MainActivity : ComponentActivity() {
                         val content = backStackEntry.arguments?.getString("content")
                         val id = backStackEntry.arguments?.getInt("id")
 
-                        val isNoteNull = listOf(id,title, content).all { it == null }
+                        val isNoteNull = listOf(id, title, content).all { it == null }
                         NoteScreen(
                             navController = navController,
-                            note = Note(id= id!!,title = title, content = content).takeIf { !isNoteNull&&id!=-1 },
+                            note = Note(
+                                id = id!!,
+                                title = title,
+                                content = content
+                            ).takeIf { !isNoteNull && id != -1 },
                             viewModel = noteViewModel
                         )
 
@@ -89,18 +93,3 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NoteProjectTheme {
-        Greeting("Android")
-    }
-}

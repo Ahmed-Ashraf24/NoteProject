@@ -25,21 +25,34 @@ fun CustomSearchBar(
     modifier: Modifier = Modifier
 ) {
 
-    Surface(modifier, shape = RoundedCornerShape(50.dp), color = _root_ide_package_.com.example.noteproject.Presentation.theme.customButtonColor){
-        Row (horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically){
+    Surface(
+        modifier,
+        shape = RoundedCornerShape(50.dp),
+        color = _root_ide_package_.com.example.noteproject.Presentation.theme.customButtonColor
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             BasicTextField(
-                modifier=Modifier.padding(start = 38.dp, top = 11.dp, bottom = 12.dp),
+                modifier = Modifier.padding(start = 38.dp, top = 11.dp, bottom = 12.dp),
                 value = query,
                 onValueChange = onQueryChange,
                 singleLine = true,
-                textStyle = _root_ide_package_.com.example.noteproject.Presentation.theme.Typography.bodyMedium.copy(color = Color.White),
+                textStyle = _root_ide_package_.com.example.noteproject.Presentation.theme.Typography.bodyMedium.copy(
+                    color = Color.White
+                ),
                 decorationBox = { innerTextField ->
-                    if (query.isEmpty()) Text(label, style = _root_ide_package_.com.example.noteproject.Presentation.theme.Typography.bodyMedium, color = _root_ide_package_.com.example.noteproject.Presentation.theme.whiteColor)
+                    if (query.isEmpty()) Text(
+                        label,
+                        style = _root_ide_package_.com.example.noteproject.Presentation.theme.Typography.bodyMedium,
+                        color = _root_ide_package_.com.example.noteproject.Presentation.theme.whiteColor
+                    )
                     innerTextField()
                 }
             )
-            Icon(painter = painterResource(R.drawable.ic_cancel),
+            Icon(
+                painter = painterResource(R.drawable.ic_cancel),
                 "cancel searching",
                 tint = _root_ide_package_.com.example.noteproject.Presentation.theme.whiteColor,
                 modifier = Modifier.padding(top = 14.dp, end = 20.dp, bottom = 12.dp)
@@ -51,6 +64,6 @@ fun CustomSearchBar(
 @Preview
 @Composable
 private fun SearchBarPreview() {
-    CustomSearchBar( query = "", label = "hello", onQueryChange = {})
+    CustomSearchBar(query = "", label = "hello", onQueryChange = {})
 
 }

@@ -18,11 +18,12 @@ import com.example.noteproject.Presentation.theme.noteColorList
 
 
 private var counter = 0
+
 @Composable
 fun NoteListComponent(
     modifier: Modifier = Modifier,
     notes: List<Note>,
-    onItemClicked: (note: Note,isDeleteView: Boolean) -> (Unit)
+    onItemClicked: (note: Note, isDeleteView: Boolean) -> (Unit)
 ) {
     var deleteModeNoteId by remember { mutableStateOf<Int?>(null) }
     LazyColumn(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
@@ -41,14 +42,14 @@ fun NoteListComponent(
                         counter++ % noteColorList.size
                     ),
                     isDeleteView = isDeleteView,
-                    onClicked = {deleteMode->
+                    onClicked = { deleteMode ->
                         if (deleteMode) {
                             onItemClicked(note, true)
                             deleteModeNoteId = null
                         } else {
                             onItemClicked(note, false)
                         }
-                                },
+                    },
                     onLongClick = {
                         deleteModeNoteId = if (isDeleteView) null else note.id
                     }

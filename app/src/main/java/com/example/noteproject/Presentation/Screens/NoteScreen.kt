@@ -33,12 +33,12 @@ import com.example.noteproject.Presentation.ViewModel.NoteViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun NoteScreen(navController: NavController, note: Note?,viewModel: NoteViewModel) {
+fun NoteScreen(navController: NavController, note: Note?, viewModel: NoteViewModel) {
     var editable by remember { mutableStateOf(false) }
     var readOnly = !editable
     var title by remember { mutableStateOf(note?.title ?: "") }
     var content by remember { mutableStateOf(note?.content ?: "") }
-    val id =note?.id
+    val id = note?.id
 
     Log.d("note", note.toString())
     Scaffold(
@@ -51,7 +51,7 @@ fun NoteScreen(navController: NavController, note: Note?,viewModel: NoteViewMode
                     mutableStateOf(false)
                 }
                 //in the ui design every top bar has padding of 53px except edit top bar have a padding  of 75
-               NewNoteTopBar(
+                NewNoteTopBar(
                     modifier = Modifier
                         .padding(top = 53.dp, start = 23.dp, end = 25.dp)
                         .fillMaxWidth(),
@@ -61,24 +61,23 @@ fun NoteScreen(navController: NavController, note: Note?,viewModel: NoteViewMode
 
                     })
                 if (saveClicked) {
-                   CustomDialog(
+                    CustomDialog(
                         onDismiss = { saveClicked = !saveClicked },
                         onConfirm = {
-                            if(editable&&id!=-1){
-                                viewModel.updateNote(Note(id!!,title,content))
-                            }
-                            else {
+                            if (editable && id != -1) {
+                                viewModel.updateNote(Note(id!!, title, content))
+                            } else {
                                 viewModel.addNote(Note(title = title, content = content))
                             }
                             saveClicked = !saveClicked
 
-                           navController.popBackStack()
+                            navController.popBackStack()
                         })
 
                 }
 
             } else {
-               EditNoteTopBar(
+                EditNoteTopBar(
                     modifier = Modifier
                         .padding(top = 75.dp, start = 23.dp, end = 25.dp)
                         .fillMaxWidth(),
@@ -90,11 +89,13 @@ fun NoteScreen(navController: NavController, note: Note?,viewModel: NoteViewMode
 
         ) {
 
-        NoteScreenBody(title, content, { content = it }, { title = it }, readOnly = readOnly)
+        NoteScreenBody(title, content,
+            onContentChange = { content = it },
+            onTitleChange = { title = it },
+            readOnly = readOnly)
 
     }
 }
-
 
 
 @Composable
@@ -112,7 +113,10 @@ fun NoteScreenBody(
                 value = title,
                 onValueChange = onTitleChange,
                 readOnly = readOnly,
-                textStyle = _root_ide_package_.com.example.noteproject.Presentation.theme.Typography.titleLarge.copy(lineHeight = 50.sp, color = Color.White),
+                textStyle = _root_ide_package_.com.example.noteproject.Presentation.theme.Typography.titleLarge.copy(
+                    lineHeight = 50.sp,
+                    color = Color.White
+                ),
                 decorationBox = { innerTextField ->
                     if (title.isEmpty()) Text(
                         "Title",
@@ -144,7 +148,9 @@ fun NoteScreenBody(
                 decorationBox = { innerTextField ->
                     if (content.isEmpty()) Text(
                         "Type something...",
-                        style = _root_ide_package_.com.example.noteproject.Presentation.theme.Typography.bodyMedium.copy(fontSize = 23.sp),
+                        style = _root_ide_package_.com.example.noteproject.Presentation.theme.Typography.bodyMedium.copy(
+                            fontSize = 23.sp
+                        ),
                         color = _root_ide_package_.com.example.noteproject.Presentation.theme.contentTitleColor
                     )
                     innerTextField()
@@ -157,7 +163,8 @@ fun NoteScreenBody(
 @Preview
 @Composable
 private fun EditScreenPrev() {
-    NoteScreen(navController = NavController(LocalContext.current), Note(title=null, content =  null),
+    NoteScreen(
+        navController = NavController(LocalContext.current), Note(title = null, content = null),
         viewModel()
     )
 }

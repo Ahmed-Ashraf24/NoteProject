@@ -6,9 +6,9 @@ import com.example.noteproject.Data.models.SearchQuery
 import com.example.noteproject.Domain.RepoInterface.NoteRepoInterface
 import kotlinx.coroutines.flow.Flow
 
-class NoteRepoImplement(private val databaseClient: DatabaseClient): NoteRepoInterface {
+class NoteRepoImplement(private val databaseClient: DatabaseClient) : NoteRepoInterface {
     override fun getAllNotes(): Flow<List<Note>> {
-       return databaseClient.getAllNotes()
+        return databaseClient.getAllNotes()
     }
 
     override suspend fun addNote(note: Note) {

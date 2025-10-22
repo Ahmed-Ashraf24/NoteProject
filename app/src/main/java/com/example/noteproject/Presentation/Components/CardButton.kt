@@ -30,18 +30,19 @@ fun CustomCardButton(
     shape: Shape,
     onClicked: () -> (Unit),
     shadowEvaluation: Int,
-    iconPadding:Int,
+    iconPadding: Int,
     description: String?
 ) {
 
     Surface(
-        modifier = modifier.shadow(shadowEvaluation.dp,shape),
+        modifier = modifier.shadow(shadowEvaluation.dp, shape),
         shape = shape,
         onClick = onClicked,
         color = surfaceBackground.copy(alphaValue),
 
-    ) {
-        Icon(imageVector = imageVector,
+        ) {
+        Icon(
+            imageVector = imageVector,
             contentDescription = description,
             tint = Color.White,
             modifier = Modifier
@@ -56,20 +57,23 @@ fun CustomCardButton(
 @Preview(showSystemUi = true)
 @Composable
 private fun CardButton() {
-    Row(Modifier
-        .fillMaxSize()
-        .padding(top = 15.dp)
-        .background(_root_ide_package_.com.example.noteproject.Presentation.theme.backGroundColor), horizontalArrangement = Arrangement.End) {
-    CustomCardButton(
-        modifier = Modifier.size(50.dp),
-       imageVector = ImageVector.vectorResource(R.drawable.search),
-        surfaceBackground = _root_ide_package_.com.example.noteproject.Presentation.theme.customButtonColor,
-        onClicked = {},
-        description = "preview",
-        alphaValue = 1f,
-        shape = RoundedCornerShape(15.dp),
-        shadowEvaluation = 8,
-        iconPadding = 12
-    )
+    Row(
+        Modifier
+            .fillMaxSize()
+            .padding(top = 15.dp)
+            .background(_root_ide_package_.com.example.noteproject.Presentation.theme.backGroundColor),
+        horizontalArrangement = Arrangement.End
+    ) {
+        CustomCardButton(
+            modifier = Modifier.size(50.dp),
+            imageVector = ImageVector.vectorResource(R.drawable.search),
+            surfaceBackground = _root_ide_package_.com.example.noteproject.Presentation.theme.customButtonColor,
+            onClicked = {},
+            description = "preview",
+            alphaValue = 1f,
+            shape = RoundedCornerShape(15.dp),
+            shadowEvaluation = 8,
+            iconPadding = 12
+        )
     }
 }
