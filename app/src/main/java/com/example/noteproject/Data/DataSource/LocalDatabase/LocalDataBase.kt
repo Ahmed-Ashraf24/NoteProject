@@ -1,6 +1,5 @@
 package com.example.noteproject.Data.DataSource.LocalDatabase
 
-import android.util.Log
 import com.example.noteproject.Data.DataSource.DatabaseClient
 import com.example.noteproject.Data.models.Note
 import com.example.noteproject.Data.models.RoomDataBase
@@ -28,7 +27,6 @@ class LocalDataBase: DatabaseClient {
     }
 
     override  fun getNoteThatMatchesQuery(query: SearchQuery): Flow<List<Note>> {
-        Log.d("hellllllllllllllllow",query.toString())
        return localDatabase.noteDao().getNotesMatchesQuery(query.toString())
     }
 }
