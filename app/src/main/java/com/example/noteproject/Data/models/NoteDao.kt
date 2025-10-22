@@ -3,7 +3,6 @@ package com.example.noteproject.Data.models
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy.Companion.REPLACE
 import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
@@ -24,5 +23,5 @@ interface NoteDao {
    suspend fun deleteNote(note:Note)
 
    @Query("SELECT *From Note where title like :query or content like :query ")
-    fun getNotesMatchesQuery(query: String): List<Note>
+    fun getNotesMatchesQuery(query: String): Flow<List<Note>>
 }
