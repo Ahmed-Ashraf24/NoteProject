@@ -1,7 +1,8 @@
 package com.example.noteproject.Domain.RepoInterface
 
-import com.example.noteproject.Data.models.Note
-import com.example.noteproject.Data.models.SearchQuery
+import com.example.noteproject.Data.models.APIModel.NoteResponse
+import com.example.noteproject.Data.models.DatabaseModel.Note
+import com.example.noteproject.Data.models.DatabaseModel.SearchQuery
 import kotlinx.coroutines.flow.Flow
 
 interface NoteRepoInterface {
@@ -10,5 +11,5 @@ interface NoteRepoInterface {
     suspend fun updateNote(note: Note)
     suspend fun deleteNote(note: Note)
     suspend fun getNoteThatMatchesQuery(query: SearchQuery): Flow<List<Note>>
-
+    suspend fun cacheNote(noteList:List<Note>)
 }

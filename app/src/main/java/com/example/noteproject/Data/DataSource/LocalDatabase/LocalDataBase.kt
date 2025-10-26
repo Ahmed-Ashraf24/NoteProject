@@ -1,9 +1,9 @@
 package com.example.noteproject.Data.DataSource.LocalDatabase
 
 import com.example.noteproject.Data.DataSource.DatabaseClient
-import com.example.noteproject.Data.models.Note
-import com.example.noteproject.Data.models.RoomDataBase
-import com.example.noteproject.Data.models.SearchQuery
+import com.example.noteproject.Data.models.DatabaseModel.Note
+import com.example.noteproject.Data.models.DatabaseModel.RoomDataBase
+import com.example.noteproject.Data.models.DatabaseModel.SearchQuery
 import com.example.noteproject.NoteApplication
 import kotlinx.coroutines.flow.Flow
 
