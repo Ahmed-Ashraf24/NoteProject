@@ -1,7 +1,7 @@
 package com.example.noteproject.Data.DataSource
 
-import com.example.noteproject.Data.models.Note
-import com.example.noteproject.Data.models.SearchQuery
+import com.example.noteproject.Data.models.DatabaseModel.Note
+import com.example.noteproject.Data.models.DatabaseModel.SearchQuery
 import kotlinx.coroutines.flow.Flow
 
 interface DatabaseClient {
